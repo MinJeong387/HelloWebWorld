@@ -39,7 +39,7 @@ public class HelloServlet extends HttpServlet {
 		logger.info("[LifeCycle]: service");
 		// 요청 메서드 확인
 		logger.info("Method:" + req.getMethod());
-
+		
 		// 분기는 개발자 몫
 		if (req.getMethod().equals("GET")) {
 			doGet(req, resp);
