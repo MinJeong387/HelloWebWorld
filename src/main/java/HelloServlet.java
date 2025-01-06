@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -30,4 +31,27 @@ public class HelloServlet extends HttpServlet {
 		out.printf("<p>Welcome, %s님</p>", name);
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// ContentType 설정
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		// POST 메서드 요청 처리
+		// 클라이언트로부터 전송된 모든 데이터를 루프 돌면서 출력
+		PrintWriter out = resp.getWriter();
+		out.println("<h1>폼 데이터 처리</h1>");
+
+		out.println("<p>폼으로부터 전송된 데이터</p>");
+		Enumeration<String> params = req.getParameterNames();
+
+		out.println("<ul>");
+		while (params.hasMoreElements()) {
+			String paramName = params.nextElement(); // 파라미터이름
+			String paramValue = req.getParameter(paramName);
+
+			out.printf("<li>%s=%s</li>", paramName, paramValue);
+		}
+//		super.doPost(req, resp);
+		out.println("</ul>");
+	}
 }
