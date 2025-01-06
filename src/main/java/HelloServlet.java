@@ -13,6 +13,7 @@ public class HelloServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// 응답 포맷 결정
 		// text/html -> MIME Type
 		resp.setContentType("text/html; charset=UTF-8");
