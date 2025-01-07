@@ -39,7 +39,7 @@ public class HelloServlet extends HttpServlet {
 		logger.info("[LifeCycle]: service");
 		// 요청 메서드 확인
 		logger.info("Method:" + req.getMethod());
-		
+
 		// 분기는 개발자 몫
 		if (req.getMethod().equals("GET")) {
 			doGet(req, resp);
@@ -60,8 +60,10 @@ public class HelloServlet extends HttpServlet {
 		// name 파라미터를 받음
 		String name = req.getParameter("name");
 
+		// name 파라미터가 없으면 -> Error
 		if (name == null) {
 			name = "Anonymous";
+			throw new ServletException("name 파라미터는 필수입니다.");
 		}
 		// 환영 메시지 출력
 //		super.doGet(req, resp);
